@@ -13,6 +13,7 @@ kap = pd.merge(df3, kap, on = 'unique' )
 n = 5 # of unique raters
 N = len(kap.unique.unique()) #number of tasks
 
+## Calculations
 kap["Pi"] = (((kap['duplicate']**2 + kap['non-duplicate']**2) + kap['unsure']**2) - n)*(1/(n*(n-1)))
 Pbar = (np.sum(kap["Pi"]))*(1/N)
 
@@ -23,6 +24,7 @@ for i,v in enumerate(['duplicate', 'non-duplicate', 'unsure']):
     p = (np.sum(kap[str(v)]))/ (n*N)
     p1.append(p)
 
+    
 Pbare = np.sum([x**2 for x in p1])
 Kappa = (Pbar - Pbare) / (1-Pbare)
 print(Kappa)
